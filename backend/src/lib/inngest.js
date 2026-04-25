@@ -32,4 +32,4 @@ const deleteUserFromDB = inngest.createFunction(
         await User.deleteOne({clerkId: id})
     }
 )
-export const functions = [syncUser];
+export const functions = [syncUser, deleteUserFromDB];
