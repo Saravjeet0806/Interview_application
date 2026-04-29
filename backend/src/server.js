@@ -8,6 +8,7 @@ import { ENV } from './lib/env.js';
 import { connectDB } from './lib/db.js';
 import { inngest, functions } from "./lib/inngest.js";
 import chatRoutes from './routes/chatRoutes.js';
+import sessionRoutes from './routes/sessionRoutes.js'
 
 const app = express();
 
@@ -19,8 +20,8 @@ app.use(cors({origin:ENV.CLIENT_URL, credentials: true}));  //CROSS ORIGIN RESOU
 app.use(clerkMiddleware()); // Add Clerk middleware to handle authentication and user sessions
 
 app.use("/api/inngest", serve({ client: inngest, functions }));
-
 app.use("/api/chat", chatRoutes)
+app.use("/api/sessions", sessionRoutes)
 
 app.get('/health', (req, res) => {
     res.status(200).json({ message: 'Hello World!' });
